@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vulnhub on Anti-Sec</title>
+    <link>http://anti-sec.vercel.app/tags/vulnhub/</link>
+    <description>Recent content in vulnhub on Anti-Sec</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 13 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://anti-sec.vercel.app/tags/vulnhub/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FourAndSix2 Writeup</title>
+      <link>http://anti-sec.vercel.app/blog/4two6-writeup/</link>
+      <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/blog/4two6-writeup/</guid>
+      <description>&lt;p&gt;This is a older-than-brand-new machine from October 2018 that I am resurrecting solely because I rolled the dice and grabbed a random machine from a random page. I know there are other write-ups but I bet none are newer than mine (DISCLAIMER: AT TIME OF WRITING)!&lt;/p&gt;
+&lt;p&gt;Created by &lt;a href=&#34;%22https://www.vulnhub.com/author/fred-wemeijer,595/%22&#34;&gt;“Fred Wemeijer”&lt;/a&gt;
+, for the FourAndSix series (and no, of course, I have not tried any others.. yet.), the description simply drop ominous and eerie instructions: “Task is to become root and read /root/flag.txt.” It’s pretty fucked up, but let’s fire off some automated tools, fellow skids. ;)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://anti-sec.vercel.app/426/1.jpg&#34; alt=&#34;nmap&#34;&gt;
+If you aren’t starting with nmap are you really starting at all?
+Right away, I started to get pissed because there was no port 80 and I don’t like surprises. Since SSH is a fairly secure and ancient protocol, trying to break it is akin eat hot garbage at record speed. Hitting rpc and nfs for clues, I dropped some commands and hit some useful nuggets&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rpcclient -U “” -N &amp;lt;IP&amp;gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; showmount -e &amp;lt;IP&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;NFS Export: /home/user/storage &lt;span style=&#34;color:#ff79c6&#34;&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;program vers proto   port  service
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100000&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;   tcp    &lt;span style=&#34;color:#bd93f9&#34;&gt;111&lt;/span&gt;  portmapper
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100000&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;   udp    &lt;span style=&#34;color:#bd93f9&#34;&gt;111&lt;/span&gt;  portmapper
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100005&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;   udp    &lt;span style=&#34;color:#bd93f9&#34;&gt;709&lt;/span&gt;  mountd
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100005&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;   udp    &lt;span style=&#34;color:#bd93f9&#34;&gt;709&lt;/span&gt;  mountd
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100005&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;   tcp    &lt;span style=&#34;color:#bd93f9&#34;&gt;718&lt;/span&gt;  mountd
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100005&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;   tcp    &lt;span style=&#34;color:#bd93f9&#34;&gt;718&lt;/span&gt;  mountd
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100003&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;   udp   &lt;span style=&#34;color:#bd93f9&#34;&gt;2049&lt;/span&gt;  nfs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100003&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;   udp   &lt;span style=&#34;color:#bd93f9&#34;&gt;2049&lt;/span&gt;  nfs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100003&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;   tcp   &lt;span style=&#34;color:#bd93f9&#34;&gt;2049&lt;/span&gt;  nfs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;100003&lt;/span&gt;    &lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;   tcp   &lt;span style=&#34;color:#bd93f9&#34;&gt;2049&lt;/span&gt;  nfs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Export list &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; 192.168.1.19:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;/home/user/storage &lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;everyone&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Since trying to mount /home and /home/storage gets rejected, you gotta mount the full path that it gives you, bro. You can mkdir a folder as a mount point for the NFS share and explore it as you please. Once in the folder, the only cool part was the backup.7z file. Very unrealistically, it is actually password-protected, unlike 99.9% of backups worldwide. But obviously, because there’s something wicked important in it.&lt;/p&gt;
+&lt;p&gt;Found this tool, even though I’m pretty sure that john or hashcat can already do this, but getting a binary unnecessarily is pretty fucking cool so I am gonna go ahead and drop the link to that.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/philsmd/7z2hashcat/releases&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/philsmd/7z2hashcat/releases&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;Since I suck and it’s an .exe, I had to open it in Windows and then send it back again to Kali.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;.\7z2hashcat64–1.4.exe .\backup.7z&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Take that long ass string of alphanumeric migraine spellcasting and save it to a .txt file for you to crack. Then, crack it with John because like myself, hashcat neglects your graphics card as well and pretends it doesn’t exist.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;john --format&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;7z hash.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The password is:: &amp;lt;do it yourself! 😃 &amp;gt;&lt;/p&gt;
+&lt;p&gt;So once we open this forsaken file, we get the ssh keys. This would be awesome, except after dropping them into our .ssh folder and renaming &lt;code&gt;id_rsa&lt;/code&gt; to &lt;code&gt;authorized_keys&lt;/code&gt;, this box still has the nerve to request a password from us.&lt;/p&gt;
+&lt;p&gt;I tried to write something in python real quick but it quickly turned into an abortive mess of spaghetti and mutated de-functions so I quickly hit up my good boy, github.com for some help. It came in the form of the first google link I tried and worked wonderfully. Big ups to the guy below who could do what I couldn’t so elegantly.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/himadriganguly/ssh-password-cracker&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/himadriganguly/ssh-password-cracker&lt;/a&gt;
+&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;python sshDictionaryAttack.py &amp;lt;IP_ADDRESS&amp;gt; user /root/wordlists/passwords/weaksauce.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The password for the ssh was: &amp;lt;do it yourself! 😃 &amp;gt;&lt;/p&gt;
+&lt;p&gt;Great OSINT skills, the password is only available to eagle eyes like yourself&lt;/p&gt;
+&lt;p&gt;Finally kicking through the front door after beating it down with all them weaksauce passwords
+Like a dummy, it took me a couple mins of trying and failing with wget and curl to move files onto the box, until I realized I can just dump them into that mounted NFS share and get ’em poppin’.&lt;/p&gt;
+&lt;p&gt;Linpeas is my GOAT tool, so I always start with that, and if everything goes well, I don’t need anything more than that, which happened to be the case this time. I really dig how the tool highlights your best chance of attack (with backups) with excellent accuracy.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;[&lt;/span&gt;+&lt;span style=&#34;color:#ff79c6&#34;&gt;]&lt;/span&gt; checking /etc/doas.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;permit nopass keepenv user as root cmd /usr/bin/less args /var/log/authlog
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;permit nopass keepenv root as root
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To break this down, &lt;code&gt;doas.conf&lt;/code&gt; is a configuration file that allows use to run &lt;code&gt;less&lt;/code&gt; (a command that reads files bit by bit, like cat but a slow controlled dribble instead of the usual terminal vomit) on &lt;code&gt;/var/log/authlog&lt;/code&gt;, as the root user. Well, &lt;code&gt;less&lt;/code&gt; has a function I figured was kinda useless until now, where you can press “v” to bounce over to Vim (time to learn the commands, boy. Just kidding, I always use nano just like &lt;strong&gt;you&lt;/strong&gt; unless I’m forced to use vim). Once in this vim screen, you can type &lt;code&gt;:sh&lt;/code&gt; to bounce out of vim and into a basic bash shell.&lt;/p&gt;
+&lt;p&gt;And the final step, is to move to &lt;code&gt;/root/&lt;/code&gt;and read the flag.txt.&lt;/p&gt;
+&lt;p&gt;Thanks for reading, till next time, skids!&lt;/p&gt;
+&lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

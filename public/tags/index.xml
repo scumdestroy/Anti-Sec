@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Anti-Sec</title>
+    <link>http://anti-sec.vercel.app/tags/</link>
+    <description>Recent content in Tags on Anti-Sec</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 15 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://anti-sec.vercel.app/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CTF</title>
+      <link>http://anti-sec.vercel.app/tags/ctf/</link>
+      <pubDate>Fri, 15 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/tags/ctf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tryhackme</title>
+      <link>http://anti-sec.vercel.app/tags/tryhackme/</link>
+      <pubDate>Fri, 15 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/tags/tryhackme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>writeups</title>
+      <link>http://anti-sec.vercel.app/tags/writeups/</link>
+      <pubDate>Fri, 15 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/tags/writeups/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BugBounty</title>
+      <link>http://anti-sec.vercel.app/tags/bugbounty/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/tags/bugbounty/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bypass</title>
+      <link>http://anti-sec.vercel.app/tags/bypass/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/tags/bypass/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WAF</title>
+      <link>http://anti-sec.vercel.app/tags/waf/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/tags/waf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vulnhub</title>
+      <link>http://anti-sec.vercel.app/tags/vulnhub/</link>
+      <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/tags/vulnhub/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>markdown</title>
+      <link>http://anti-sec.vercel.app/tags/markdown/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>text</title>
+      <link>http://anti-sec.vercel.app/tags/text/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/tags/text/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

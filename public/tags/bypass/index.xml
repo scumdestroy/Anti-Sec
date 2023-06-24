@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bypass on Anti-Sec</title>
+    <link>http://anti-sec.vercel.app/tags/bypass/</link>
+    <description>Recent content in Bypass on Anti-Sec</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 14 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://anti-sec.vercel.app/tags/bypass/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Non-Discriminatory WAF Torment</title>
+      <link>http://anti-sec.vercel.app/blog/non-discriminatory-waf-torment/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/blog/non-discriminatory-waf-torment/</guid>
+      <description>For penetration testers and attackers, dealing with WAFs can be an often frustrating experience. However, creativity and perserverence will be your greatest assets in the often-tedious tasks of enumerating the firewall&amp;rsquo;s rules and settings through deductive reasoning. This is almost always a black-box set of trials, akin to a game of &amp;ldquo;Go Fish&amp;rdquo; in the short-term and the usual Cat-and-Mouse game common to cybersecurity in the long term. Luckily, many organizations misconfigure their WAFs and many imaginative combinations of bypasses can elude defensive expectations, allowing you to fire that harmless and satisfying &amp;ldquo;Alert(1)&amp;rdquo; box, against any firewall (well, hopefully).</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Anti-Sec</title>
+    <link>http://anti-sec.vercel.app/page/</link>
+    <description>Recent content in Pages on Anti-Sec</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 10 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://anti-sec.vercel.app/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>http://anti-sec.vercel.app/page/about/</link>
+      <pubDate>Mon, 10 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://anti-sec.vercel.app/page/about/</guid>
+      <description>Hi there 👋
+I break stuff so people that build stuff can build better stuff that breaks less.
+To contact me or learn more about me, check out the links below. Thanks for reading!
+Scumdestroy at Github@Kurogai&amp;amp;rsquo;s 100 Red Team Projects Challenge, around 75% done[Web and API Hacking, Burp Suite Notes and Methodology]{https://github.com/scumdestroy/Infosec-Corruption}
+Articles at MediumOpen Source Contributions Hackingthe.cloud - Pentesting Cloud Platforms Knowledge BaseTomnomnom&amp;amp;rsquo;s GF ToolBug Bounty I am a member of a couple invite-only bug bounty platforms</description>
+    </item>
+    
+  </channel>
+</rss>
