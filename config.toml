@@ -16,8 +16,8 @@ DefaultContentLanguageInSubdir = true
     [languages.en.params]
       introTitle = "Intrusions Into Abyssic Cyber-Realms: Unveiling the Esoteric Secrets of Anti-Cosmic Hacking"
       introSubtitle = "Articles, notes and musings on web hacking, penetration testing "
-      introPhoto = "/floral8.jpg"
-      logo = "/LC.png"
+      introPhoto = "floral8.jpg"
+      logo = "LC.png"
     [[languages.en.menu.main]]
         name = "Blog"
         url = "blog"
@@ -62,7 +62,7 @@ DefaultContentLanguageInSubdir = true
 
   # Custom copyright - optional
   copyright = "Copyright © 2023 - Jann Moon · All rights reserved"
-  favicon = "/favicon.ico"
+  favicon = "favicon.ico"
 
   # Color for the intro details and social links block, not applicable for dark mode
   # Supported values: Any color from TailwindCSS default colors
