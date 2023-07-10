@@ -4,7 +4,7 @@ title: "Bounty Hunter Write-up (TryHackMe)"
 date: 2022-07-15
 description: "Write-Up for Bounty Hunter on TryHackMe"
 tags: ["tryhackme", "writeups", "ctf"]
-thumbnail: /floral2.jpg
+thumbnail: floral2.jpg
 ---
 
 This is a write-up for a recently released room called “Bounty Hunter” created by Sevuhl on excellent CTF platform, TryHackMe. This room contains basic FTP enumeration, using Hydra with SSH and abuse of sudo for privilege escalation on an Ubuntu, Linux OS. I thought it was going to a bug bounty related room based on the name, but I guess it is Cowboy Bebop themed, though I am really clueless on that. I am not that kind of nerd, I guess.
