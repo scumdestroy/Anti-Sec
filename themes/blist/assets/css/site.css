@@ -4,13 +4,8 @@
 </style>
 
 /* Fonts */
-<head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-<style>
-font-family: 'Oxanium', cursive;
-</style>
-</head>
-/* inter-300 - latin 
+
+inter-300 - latin 
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -26,7 +21,7 @@ font-family: 'Oxanium', cursive;
     /* Safari, Android, iOS */ url("/fonts/inter-v3-latin-300.svg#Inter")
       format("svg"); /* Legacy iOS */
 }
-/* inter-500 - latin 
+inter-500 - latin 
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -42,7 +37,7 @@ font-family: 'Oxanium', cursive;
     /* Safari, Android, iOS */ url("/fonts/inter-v3-latin-500.svg#Inter")
       format("svg"); /* Legacy iOS */
 }
-/* inter-700 - latin 
+inter-700 - latin 
 @font-face {
   font-family: "Inter";
   font-style: normal;
