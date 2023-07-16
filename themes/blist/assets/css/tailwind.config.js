@@ -34,49 +34,49 @@ module.exports = {
         dark: {
           css: [
             {
-              color: theme("colors.gray.400"),
+              color: theme("colors.zinc.600"),
               '[class~="lead"]': {
                 color: theme("colors.gray.300"),
               },
               a: {
-                color: theme("colors.white"),
+                color: theme("colors.yellow.50"),
               },
               strong: {
-                color: theme("colors.white"),
+                color: theme("colors.lime.400"),
               },
               "ol > li::before": {
-                color: theme("colors.gray.400"),
+                color: theme("colors.zinc.800"),
               },
               "ul > li::before": {
-                backgroundColor: theme("colors.gray.600"),
+                backgroundColor: theme("colors.zinc.900"),
               },
               hr: {
                 borderColor: theme("colors.gray.200"),
               },
               blockquote: {
                 color: theme("colors.gray.200"),
-                borderLeftColor: theme("colors.gray.600"),
+                borderLeftColor: theme("colors.lime.800"),
               },
               h1: {
-                color: theme("colors.white"),
+                color: theme("colors.yellow.300"),
               },
               h2: {
-                color: theme("colors.white"),
+                color: theme("colors.yellow.400"),
               },
               h3: {
-                color: theme("colors.white"),
+                color: theme("colors.lime.500"),
               },
               h4: {
-                color: theme("colors.white"),
+                color: theme("colors.lime.50"),
               },
               "figure figcaption": {
-                color: theme("colors.gray.400"),
+                color: theme("colors.yellow.200"),
               },
               code: {
-                color: theme("colors.white"),
+                color: theme("colors.emerald.300"),
               },
               "a code": {
-                color: theme("colors.white"),
+                color: theme("colors.lime.50"),
               },
               'code::before': {
                 content: '""',
@@ -85,15 +85,15 @@ module.exports = {
                 content: '""',
               },
               pre: {
-                color: theme("colors.gray.200"),
-                backgroundColor: theme("colors.gray.800"),
+                color: theme("colors.yellow.400"),
+                backgroundColor: theme("colors.zinc.800"),
               },
               thead: {
                 color: theme("colors.white"),
-                borderBottomColor: theme("colors.gray.400"),
+                borderBottomColor: theme("colors.yellow.400"),
               },
               "tbody tr": {
-                borderBottomColor: theme("colors.gray.600"),
+                borderBottomColor: theme("colors.zinc.800"),
               },
             },
           ],
