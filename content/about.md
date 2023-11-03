@@ -1,26 +1,19 @@
 ---
-author: Katheryn Fox
+author: Jann Moon
 title: About Me
-date: 2021-07-15
+date: Tomorrow
 description:
-keywords: ["about-us", "about-hugo", "contact"]
+keywords: ["about-me", "contact"]
 type: about
 ---
 
-Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+Hey there, young one! 
+I am Jann, a certified penetration tester (OSCP, eCPPTv2, eWPT, CompTIA Pentest+) and offsec cybermage with a particular interest and specialization in API and web hacking.  
+- I have found bugs in bug bounty programs for companies such as Yahoo, Lucasfilm, Red Bull, Razer, Indeed, UnderArmour, Merck, and many more. I am also a part of Yogosha's web hacking team and Pentabug's Red Team. In addition to my penetration testing work, I have worked for Linode and Akamai as a technical writer on cloud computing and networking topics.
+- I've just started hunting CVE's this year and am responsible for CVE-2023-3275, CVE-2023-5303, CVE-2023-5304 and CVE-2023-5305.
+These vulnerabilities unleashed a critical SQL injection that revealed all users' private information, including their addresses, photos, and SSNs, as well as three Stored XSS vulnerabilities. 
+- I've also hit top ten USA and top 50 overall on TryHackMe.com, a website with over 2 million users.
 
-Hugo makes use of a variety of open source projects including:
+Thanks for reading, and please don't hesitate to contact me if you have any questions or would like to discuss a potential project.
 
-- https://github.com/yuin/goldmark
-- https://github.com/alecthomas/chroma
-- https://github.com/muesli/smartcrop
-- https://github.com/spf13/cobra
-- https://github.com/spf13/viper
-
-Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
-
-Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.
-
-Websites built with Hugo are extremely fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+jann [at] scumdestroy.com
